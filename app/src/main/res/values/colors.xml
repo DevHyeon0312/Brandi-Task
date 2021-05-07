@@ -9,5 +9,6 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="alpha_dark">#33000000</color>
+    <color name="scrollbar_thumb">#880000</color>
 
 </resources>
