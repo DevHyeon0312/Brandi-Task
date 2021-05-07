@@ -1,4 +1,4 @@
-package com.devhyeon.kakaoimagesearch.utils
+package com.devhyeon.kakaoimagesearch.utils.util
 
 import android.content.Context
 import android.view.View
@@ -6,15 +6,15 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 
-/** 뷰를 사용하는 Util */
+/** View Visible */
 fun View.toVisible() {
     this.visibility = View.VISIBLE
 }
-
+/** View Gone */
 fun View.toGone() {
     this.visibility = View.GONE
 }
-
+/** View Invisible */
 fun View.toInvisible() {
     this.visibility = View.GONE
 }

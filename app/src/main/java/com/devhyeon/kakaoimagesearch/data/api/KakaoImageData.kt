@@ -1,4 +1,4 @@
-package com.devhyeon.kakaoimagesearch.network.kakao.data
+package com.devhyeon.kakaoimagesearch.data.api
 
 import com.google.gson.annotations.SerializedName
 
@@ -12,7 +12,7 @@ import com.google.gson.annotations.SerializedName
  * @param(doc_url)          : String    : 문서 URL
  * @param(datetime)         : String    : 문서 작성시간, ISO 8601 [YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].000+[tz]
  * */
-data class ImageData(
+data class KakaoImageData(
     @SerializedName("collection")       val collection          : String,
     @SerializedName("thumbnail_url")    val thumbnail_url       : String,
     @SerializedName("image_url")        val image_url           : String,

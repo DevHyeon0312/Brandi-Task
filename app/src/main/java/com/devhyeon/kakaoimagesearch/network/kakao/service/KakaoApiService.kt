@@ -1,7 +1,7 @@
 package com.devhyeon.kakaoimagesearch.network.kakao.service
 
 import com.devhyeon.kakaoimagesearch.define.KAKAO_SEARCH_IMAGE_URL
-import com.devhyeon.kakaoimagesearch.network.kakao.reponse.ImageResponse
+import com.devhyeon.kakaoimagesearch.network.kakao.reponse.KakaoImageResponse
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Query
@@ -23,6 +23,6 @@ interface KakaoApiService {
         @Query("page")           page     : Int,
         @Query("size")           size     : Int,
         @Header("Authorization") apiKey   : String
-    ): ImageResponse
+    ): KakaoImageResponse
 
 }

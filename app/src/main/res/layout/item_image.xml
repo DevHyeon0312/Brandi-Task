@@ -8,7 +8,7 @@
         <import type="android.view.View" />
         <variable
             name="imgData"
-            type="com.devhyeon.kakaoimagesearch.network.kakao.data.ImageData" />
+            type="com.devhyeon.kakaoimagesearch.data.api.KakaoImageData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -1,11 +1,11 @@
-package com.devhyeon.kakaoimagesearch.ui.activities.main
+package com.devhyeon.kakaoimagesearch.view.activities
 
 import android.os.Bundle
 import android.view.View
 import com.devhyeon.kakaoimagesearch.databinding.ActivityMainBinding
-import com.devhyeon.kakaoimagesearch.ui.activities.base.BaseActivity
-import com.devhyeon.kakaoimagesearch.ui.fragments.imagesearch.ImageListFragment
-import com.devhyeon.kakaoimagesearch.ui.fragments.imagesearch.ImageSearchFragment
+import com.devhyeon.kakaoimagesearch.view.base.BaseActivity
+import com.devhyeon.kakaoimagesearch.view.fragments.ImageListFragment
+import com.devhyeon.kakaoimagesearch.view.fragments.ImageSearchFragment
 
 class MainActivity : BaseActivity() {
     companion object {

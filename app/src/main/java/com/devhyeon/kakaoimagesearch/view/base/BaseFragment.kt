@@ -1,4 +1,4 @@
-package com.devhyeon.kakaoimagesearch.ui.fragments.base
+package com.devhyeon.kakaoimagesearch.view.base
 
 import android.os.Bundle
 import android.view.LayoutInflater

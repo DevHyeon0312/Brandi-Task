@@ -1,4 +1,4 @@
-package com.devhyeon.kakaoimagesearch.ui.fragments.imagesearch
+package com.devhyeon.kakaoimagesearch.view.fragments
 
 import android.os.Bundle
 import android.text.Editable
@@ -6,17 +6,15 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.lifecycle.lifecycleScope
 import com.devhyeon.kakaoimagesearch.databinding.FragmentImageSearchBinding
 import com.devhyeon.kakaoimagesearch.define.MS_1000
 import com.devhyeon.kakaoimagesearch.define.error.UNKNOWN_ERROR
-import com.devhyeon.kakaoimagesearch.ui.fragments.base.BaseFragment
-import com.devhyeon.kakaoimagesearch.ui.livedata.ExpansionLiveData
-import com.devhyeon.kakaoimagesearch.utils.Status
-import com.devhyeon.kakaoimagesearch.utils.hideKeyboard
+import com.devhyeon.kakaoimagesearch.view.base.BaseFragment
+import com.devhyeon.kakaoimagesearch.data.livedata.ImageSearchLiveData
+import com.devhyeon.kakaoimagesearch.utils.util.Status
+import com.devhyeon.kakaoimagesearch.utils.util.hideKeyboard
 import kotlinx.coroutines.*
-import java.util.*
 
 /** 이미지 검색 UI Fragment */
 class ImageSearchFragment : BaseFragment() {
@@ -28,7 +26,8 @@ class ImageSearchFragment : BaseFragment() {
     private var _binding: FragmentImageSearchBinding? = null
     private val binding get() = _binding!!
 
-    private val imageLiveData = ExpansionLiveData.get("ImageSearch")
+    //검색어 LiveData
+    private val imageLiveData = ImageSearchLiveData.get()
 
     //텍스트변경 코루틴 Job
     var job : Job? = null

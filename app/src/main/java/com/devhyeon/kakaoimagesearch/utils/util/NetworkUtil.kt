@@ -1,4 +1,4 @@
-package com.devhyeon.kakaoimagesearch.utils
+package com.devhyeon.kakaoimagesearch.utils.util
 
 import android.content.Context
 import android.net.ConnectivityManager

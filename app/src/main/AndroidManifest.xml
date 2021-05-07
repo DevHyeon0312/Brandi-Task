@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KakaoImageSearch">
 
-        <activity android:name="com.devhyeon.kakaoimagesearch.ui.activities.intro.IntroActivity"
+        <activity android:name="com.devhyeon.kakaoimagesearch.view.activities.IntroActivity"
             android:theme="@style/Theme.ActivityFullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.devhyeon.kakaoimagesearch.ui.activities.main.MainActivity"
+        <activity android:name="com.devhyeon.kakaoimagesearch.view.activities.MainActivity"
             android:theme="@style/Theme.ActivityFullScreen"/>
 
     </application>

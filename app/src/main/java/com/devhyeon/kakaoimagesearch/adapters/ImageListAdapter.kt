@@ -1,4 +1,4 @@
-package com.devhyeon.kakaoimagesearch.ui.adapters
+package com.devhyeon.kakaoimagesearch.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,12 +8,12 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.devhyeon.kakaoimagesearch.R
 import com.devhyeon.kakaoimagesearch.databinding.ItemImageBinding
-import com.devhyeon.kakaoimagesearch.network.kakao.data.ImageData
-import com.devhyeon.kakaoimagesearch.utils.loadImage
+import com.devhyeon.kakaoimagesearch.data.api.KakaoImageData
+import com.devhyeon.kakaoimagesearch.utils.util.loadImage
 import kotlin.properties.Delegates
 
 class ImageListAdapter(val fragment : Fragment) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    var imageList: List<ImageData> by Delegates.observable(emptyList()) { _, _, _ ->
+    var imageList: List<KakaoImageData> by Delegates.observable(emptyList()) { _, _, _ ->
         notifyDataSetChanged()
     }
 
@@ -26,14 +26,14 @@ class ImageListAdapter(val fragment : Fragment) : RecyclerView.Adapter<RecyclerV
 
     override fun getItemCount(): Int = if (imageList.isNullOrEmpty()) 0 else imageList.size
 
-    private fun getItem(position: Int): ImageData = imageList[position]
+    private fun getItem(position: Int): KakaoImageData = imageList[position]
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         (holder as TrackListViewHolder).onBind(getItem(position))
     }
     
     private inner class TrackListViewHolder(private val viewDataBinding: ViewDataBinding) : RecyclerView.ViewHolder(viewDataBinding.root) {
-        fun onBind(imgData: ImageData) {
+        fun onBind(imgData: KakaoImageData) {
             (viewDataBinding as ItemImageBinding).imgData = imgData
             //이미지 load
             viewDataBinding.ivThumbnail.loadImage(imgData.thumbnail_url)

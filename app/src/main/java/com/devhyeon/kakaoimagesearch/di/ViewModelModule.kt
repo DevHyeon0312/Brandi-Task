@@ -1,7 +1,7 @@
 package com.devhyeon.kakaoimagesearch.di.viewmodel
 
-import com.devhyeon.kakaoimagesearch.network.KakaoApiViewModel
-import com.devhyeon.kakaoimagesearch.ui.activities.intro.IntroViewModel
+import com.devhyeon.kakaoimagesearch.viewmodels.KakaoApiViewModel
+import com.devhyeon.kakaoimagesearch.viewmodels.IntroViewModel
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 

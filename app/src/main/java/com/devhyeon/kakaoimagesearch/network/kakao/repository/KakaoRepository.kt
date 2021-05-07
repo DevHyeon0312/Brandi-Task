@@ -1,7 +1,6 @@
 package com.devhyeon.kakaoimagesearch.network.kakao.repository
 
-import com.devhyeon.kakaoimagesearch.network.kakao.reponse.ImageResponse
-import retrofit2.Call
+import com.devhyeon.kakaoimagesearch.network.kakao.reponse.KakaoImageResponse
 
 interface KakaoRepository {
     /**
@@ -10,5 +9,5 @@ interface KakaoRepository {
      *  @param(page)  : Int     :   페이지
      *  @param(size)  : Int     :   페이지당 개수
      *  */
-    suspend fun getSearchImage(query: String, sort: String, page: Int, size: Int, apiKey: String) : ImageResponse
+    suspend fun getSearchImage(query: String, sort: String, page: Int, size: Int, apiKey: String) : KakaoImageResponse
 }

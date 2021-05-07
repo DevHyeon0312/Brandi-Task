@@ -1,8 +1,7 @@
 package com.devhyeon.kakaoimagesearch.network.kakao.repository
 
-import com.devhyeon.kakaoimagesearch.network.kakao.reponse.ImageResponse
+import com.devhyeon.kakaoimagesearch.network.kakao.reponse.KakaoImageResponse
 import com.devhyeon.kakaoimagesearch.network.kakao.service.KakaoApiService
-import retrofit2.Call
 
 class KakaoRepositoryImp (private val kakaoApiService: KakaoApiService) : KakaoRepository {
 
@@ -12,7 +11,7 @@ class KakaoRepositoryImp (private val kakaoApiService: KakaoApiService) : KakaoR
         page: Int,
         size: Int,
         apiKey: String
-    ): ImageResponse {
+    ): KakaoImageResponse {
         return kakaoApiService.getSearchImage(query, sort, page, size, apiKey)
     }
 

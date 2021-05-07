@@ -1,4 +1,4 @@
-package com.devhyeon.kakaoimagesearch.ui.fragments.imagesearch
+package com.devhyeon.kakaoimagesearch.view.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,13 +8,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.devhyeon.kakaoimagesearch.databinding.FragmentImageListBinding
 import com.devhyeon.kakaoimagesearch.define.API_KEY
-import com.devhyeon.kakaoimagesearch.network.KakaoApiViewModel
-import com.devhyeon.kakaoimagesearch.ui.adapters.ImageListAdapter
-import com.devhyeon.kakaoimagesearch.ui.fragments.base.BaseFragment
-import com.devhyeon.kakaoimagesearch.ui.livedata.ExpansionLiveData
-import com.devhyeon.kakaoimagesearch.utils.Status
-import com.devhyeon.kakaoimagesearch.utils.toGone
-import com.devhyeon.kakaoimagesearch.utils.toVisible
+import com.devhyeon.kakaoimagesearch.viewmodels.KakaoApiViewModel
+import com.devhyeon.kakaoimagesearch.adapters.ImageListAdapter
+import com.devhyeon.kakaoimagesearch.view.base.BaseFragment
+import com.devhyeon.kakaoimagesearch.data.livedata.ImageSearchLiveData
+import com.devhyeon.kakaoimagesearch.utils.util.Status
+import com.devhyeon.kakaoimagesearch.utils.util.toGone
+import com.devhyeon.kakaoimagesearch.utils.util.toVisible
 import org.koin.android.viewmodel.ext.android.viewModel
 
 /** 이미지 검색결과 UI Fragment */
@@ -27,9 +27,11 @@ class ImageListFragment : BaseFragment() {
     private var _binding: FragmentImageListBinding? = null
     private val binding get() = _binding!!
 
+    //뷰모델
     private val kakaoApiViewModel: KakaoApiViewModel by viewModel()
 
-    private val imageLiveData = ExpansionLiveData.get("ImageSearch")
+    //검색어 LiveData
+    private val imageLiveData = ImageSearchLiveData.get()
 
     //어댑터
     private var imageListAdapter: ImageListAdapter? = ImageListAdapter(this)
