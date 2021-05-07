@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.lifecycle.*
 import com.devhyeon.kakaoimagesearch.R
 import com.devhyeon.kakaoimagesearch.define.MS_1000
+import com.devhyeon.kakaoimagesearch.define.MS_500
 import com.devhyeon.kakaoimagesearch.define.NETWORK_DISCONNECT
 import com.devhyeon.kakaoimagesearch.define.error.UNKNOWN_ERROR
 import com.devhyeon.kakaoimagesearch.utils.Status
@@ -19,7 +20,7 @@ class IntroViewModel : ViewModel() {
     private val _delayState = MutableLiveData<Status<Boolean>>()
     val delayState: LiveData<Status<Boolean>> get() = _delayState
 
-    private val delayTime = MS_1000
+    private val delayTime = MS_500
 
     /** 네트워크 연결상태 검사 진행 */
     fun runCheckNetworkState(@NotNull context: Context) {
