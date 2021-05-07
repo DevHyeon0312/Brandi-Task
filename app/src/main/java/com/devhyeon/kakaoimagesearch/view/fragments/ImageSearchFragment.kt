@@ -6,6 +6,7 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.devhyeon.kakaoimagesearch.databinding.FragmentImageSearchBinding
 import com.devhyeon.kakaoimagesearch.define.MS_1000
@@ -61,9 +62,7 @@ class ImageSearchFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
     }
 
-    override fun addObserver() {
-
-    }
+    override fun addObserver() {}
 
 
     /** 텍스트 변경시작 */

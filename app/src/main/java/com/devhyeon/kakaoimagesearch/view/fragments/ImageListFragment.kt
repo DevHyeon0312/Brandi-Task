@@ -87,15 +87,20 @@ class ImageListFragment : BaseFragment() {
         })
 
         /** 검색어 변경 감지 */
+        var isRun = false
         imageLiveData.observe(this@ImageListFragment, Observer {
             when(it) {
-                is Status.Run -> { }
+                is Status.Run -> {
+                    isRun = true
+                }
                 is Status.Success -> {
-                    if (it.data!!.toString().isNotEmpty()) {
-                        page = 1
-                        kakaoApiViewModel.loadSearchImageData(lifecycleScope, it.data.toString(),sort,page,size, API_KEY)
-                    } else {
-                        showEmpty()
+                    if(isRun) {
+                        if (it.data!!.toString().isNotEmpty()) {
+                            page = 1
+                            kakaoApiViewModel.loadSearchImageData(lifecycleScope, it.data.toString(),sort,page,size, API_KEY)
+                        } else {
+                            showEmpty()
+                        }
                     }
                 }
                 is Status.Failure -> {
