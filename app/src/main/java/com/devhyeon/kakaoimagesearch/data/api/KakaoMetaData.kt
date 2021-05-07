@@ -10,7 +10,7 @@ import com.google.gson.annotations.SerializedName
  * */
 
 data class KakaoMetaData(
-    @SerializedName("total_count")      val collection          : Int,
-    @SerializedName("pageable_count")   val thumbnail_url       : Int,
-    @SerializedName("is_end")           val image_url           : Boolean
+    @SerializedName("total_count")      val total_count      : Int,
+    @SerializedName("pageable_count")   val pageable_count   : Int,
+    @SerializedName("is_end")           val is_end           : Boolean
 )
