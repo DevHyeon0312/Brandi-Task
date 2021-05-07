@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/white">
 
     <EditText
         android:id="@+id/et_search"
@@ -11,7 +12,9 @@
         android:layout_height="@dimen/view_size_title_height"
         android:ems="10"
         android:inputType="text"
-        android:text="Name"
+        android:hint="input"
+        android:textColor="@color/black"
+        android:textColorHint="@color/alpha_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

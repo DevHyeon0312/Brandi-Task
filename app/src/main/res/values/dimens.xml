@@ -6,6 +6,7 @@
     <!-- View Size -->
     <dimen name="view_size_image_thumbnail">130dp</dimen>
     <dimen name="view_size_title_height">100dp</dimen>
+    <dimen name="view_padding_image_thumbnail">5dp</dimen>
 
     <!-- Drawable -->
     <dimen name="scrollbar_size">5dp</dimen>
