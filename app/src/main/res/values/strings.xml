@@ -4,7 +4,7 @@
     <!-- Message -->
     <string name="network_connect">네트워크가 연결되어 있습니다.</string>
     <string name="network_disconnect">네트워크가 연결되어 있지 않습니다.</string>
-
+    <string name="data_empty">검색 결과가 없습니다</string>
     <!-- Description -->
     <string name="logo_description">로고이미지</string>
 
