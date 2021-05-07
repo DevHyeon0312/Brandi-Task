@@ -8,4 +8,7 @@
     <!-- Description -->
     <string name="logo_description">로고이미지</string>
 
+    <!-- View Text -->
+    <string name="button_refresh">새로고침</string>
+
 </resources>
