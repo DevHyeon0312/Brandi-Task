@@ -19,6 +19,7 @@
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:indeterminateTint="@color/black"
             android:layout_centerInParent="true" />
 
     </RelativeLayout>
@@ -54,6 +55,7 @@
             android:id="@+id/rv_image_loader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:indeterminateTint="@color/black"
             android:background="@color/alpha_dark"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
