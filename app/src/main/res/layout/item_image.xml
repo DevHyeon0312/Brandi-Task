@@ -16,7 +16,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/iv_track_art"
+            android:id="@+id/iv_thumbnail"
             android:layout_width="@dimen/view_size_image_thumbnail"
             android:layout_height="@dimen/view_size_image_thumbnail"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -6,10 +6,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.devhyeon.kakaoimagesearch.R
 import com.devhyeon.kakaoimagesearch.databinding.ItemImageBinding
 import com.devhyeon.kakaoimagesearch.network.kakao.data.ImageData
+import com.devhyeon.kakaoimagesearch.utils.loadImage
 import kotlin.properties.Delegates
 
 class ImageListAdapter(val fragment : Fragment) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -35,12 +35,8 @@ class ImageListAdapter(val fragment : Fragment) : RecyclerView.Adapter<RecyclerV
     private inner class TrackListViewHolder(private val viewDataBinding: ViewDataBinding) : RecyclerView.ViewHolder(viewDataBinding.root) {
         fun onBind(imgData: ImageData) {
             (viewDataBinding as ItemImageBinding).imgData = imgData
-            //이미지
-            Glide
-                .with(fragment)
-                .load(imgData.thumbnail_url)
-                .into(viewDataBinding.ivTrackArt)
-
+            //이미지 load
+            viewDataBinding.ivThumbnail.loadImage(imgData.thumbnail_url)
         }
     }
 }
