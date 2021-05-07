@@ -23,7 +23,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.devhyeon.kakaoimagesearch.ui.activities.main.MainActivity"/>
+        <activity android:name="com.devhyeon.kakaoimagesearch.ui.activities.main.MainActivity"
+            android:theme="@style/Theme.ActivityFullScreen"/>
 
     </application>
 
