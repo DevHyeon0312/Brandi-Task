@@ -14,6 +14,7 @@ import com.devhyeon.kakaoimagesearch.define.error.UNKNOWN_ERROR
 import com.devhyeon.kakaoimagesearch.ui.fragments.base.BaseFragment
 import com.devhyeon.kakaoimagesearch.ui.livedata.ExpansionLiveData
 import com.devhyeon.kakaoimagesearch.utils.Status
+import com.devhyeon.kakaoimagesearch.utils.hideKeyboard
 import kotlinx.coroutines.*
 import java.util.*
 
@@ -82,6 +83,7 @@ class ImageSearchFragment : BaseFragment() {
                 imageLiveData.postValue(Status.Run(""))
                 delay(MS_1000)
             }.onSuccess {
+                binding.etSearch.hideKeyboard()
                 imageLiveData.postValue(Status.Success(s.toString()))
             }.onFailure {
                 imageLiveData.postValue(Status.Failure(UNKNOWN_ERROR,it.message!!))
