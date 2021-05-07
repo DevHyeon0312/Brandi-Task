@@ -2,19 +2,27 @@ package com.devhyeon.kakaoimagesearch.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isGone
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.devhyeon.kakaoimagesearch.R
 import com.devhyeon.kakaoimagesearch.databinding.ItemImageBinding
 import com.devhyeon.kakaoimagesearch.data.api.KakaoImageData
+import com.devhyeon.kakaoimagesearch.utils.util.Status
 import com.devhyeon.kakaoimagesearch.utils.util.loadImage
-import kotlin.properties.Delegates
 
-class ImageListAdapter(val fragment : Fragment) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    var imageList: List<KakaoImageData> by Delegates.observable(emptyList()) { _, _, _ ->
-        notifyDataSetChanged()
+class ImageListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    var imageList: MutableList<KakaoImageData> = mutableListOf()
+
+    /** 스크롤 감지 LiveData */
+    private val _scrollState = MutableLiveData<Status<Boolean>>()
+    val scrollState: LiveData<Status<Boolean>> get() = _scrollState
+    fun scrollStateRun() {
+        _scrollState.value = Status.Run()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -28,8 +36,24 @@ class ImageListAdapter(val fragment : Fragment) : RecyclerView.Adapter<RecyclerV
 
     private fun getItem(position: Int): KakaoImageData = imageList[position]
 
+    fun addItem(list: List<KakaoImageData>) {
+        imageList.addAll(list)
+        notifyItemRangeChanged(itemCount, list.size)
+    }
+
+    fun createItem(list: List<KakaoImageData>) {
+        imageList.clear()
+        imageList.addAll(list)
+        notifyDataSetChanged()
+    }
+
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         (holder as TrackListViewHolder).onBind(getItem(position))
+        if(position == imageList.size-1) {
+            if(_scrollState.value is Status.Run ) {
+                _scrollState.value = (Status.Success(true))
+            }
+        }
     }
     
     private inner class TrackListViewHolder(private val viewDataBinding: ViewDataBinding) : RecyclerView.ViewHolder(viewDataBinding.root) {
