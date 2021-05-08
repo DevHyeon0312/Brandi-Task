@@ -1,4 +1,4 @@
-package com.devhyeon.kakaoimagesearch.utils.util
+package com.devhyeon.kakaoimagesearch.utils
 
 import android.content.Context
 import android.view.View

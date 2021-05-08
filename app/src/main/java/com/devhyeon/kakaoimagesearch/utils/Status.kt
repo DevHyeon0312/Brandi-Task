@@ -1,4 +1,4 @@
-package com.devhyeon.kakaoimagesearch.utils.util
+package com.devhyeon.kakaoimagesearch.utils
 
 /** 상태에 따라 처리하기 위해 작성 */
 sealed class Status<T>(val data: T? = null, val errorCode: Int? = null, val errorMessage: String? = null) {
