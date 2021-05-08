@@ -1,5 +1,7 @@
 package com.devhyeon.kakaoimagesearch.view.fragments
 
+import android.annotation.SuppressLint
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -7,13 +9,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
+import com.devhyeon.kakaoimagesearch.R
 import com.devhyeon.kakaoimagesearch.databinding.FragmentImageSearchBinding
 import com.devhyeon.kakaoimagesearch.define.MS_1000
 import com.devhyeon.kakaoimagesearch.define.error.UNKNOWN_ERROR
 import com.devhyeon.kakaoimagesearch.view.base.BaseFragment
 import com.devhyeon.kakaoimagesearch.data.livedata.ImageSearchLiveData
 import com.devhyeon.kakaoimagesearch.utils.Status
+import com.devhyeon.kakaoimagesearch.utils.enableFalse
+import com.devhyeon.kakaoimagesearch.utils.enableTrue
 import com.devhyeon.kakaoimagesearch.utils.hideKeyboard
+import com.google.android.material.appbar.AppBarLayout
 import kotlinx.coroutines.*
 
 /** 이미지 검색 UI Fragment */
@@ -55,6 +61,11 @@ class ImageSearchFragment : BaseFragment() {
                 changeText(s)
             }
         })
+
+        binding.cancelButton.setOnClickListener {
+            binding.cancelButton.enableFalse()
+            binding.etSearch.setText("")
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -81,9 +92,11 @@ class ImageSearchFragment : BaseFragment() {
                 delay(MS_1000)
             }.onSuccess {
                 if(s.toString().isBlank()) {
+                    binding.cancelButton.enableFalse()
                     imageLiveData.postValue(Status.Success(""))
                 } else {
                     binding.etSearch.hideKeyboard()
+                    binding.cancelButton.enableTrue()
                     imageLiveData.postValue(Status.Success(s.toString()))
                 }
             }.onFailure {

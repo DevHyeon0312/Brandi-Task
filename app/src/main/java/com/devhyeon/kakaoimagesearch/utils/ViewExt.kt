@@ -1,11 +1,14 @@
 package com.devhyeon.kakaoimagesearch.utils
 
 import android.content.Context
+import android.os.Build
 import android.util.DisplayMetrics
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.Button
 import android.widget.ImageView
 import com.bumptech.glide.Glide
+import com.devhyeon.kakaoimagesearch.R
 
 /** View Visible */
 fun View.toVisible() {
@@ -18,6 +21,26 @@ fun View.toGone() {
 /** View Invisible */
 fun View.toInvisible() {
     this.visibility = View.GONE
+}
+
+/** TextView Enabled False */
+fun Button.enableFalse() {
+    this.isEnabled = false
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        this.setTextColor(context!!.getColor(R.color.text_enabled_false))
+    } else {
+        this.setTextColor(context!!.resources.getColor(R.color.text_enabled_false))
+    }
+}
+
+/** TextView Enabled True */
+fun Button.enableTrue() {
+    this.isEnabled = true
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        this.setTextColor(context!!.getColor(R.color.text_enabled_true))
+    } else {
+        this.setTextColor(context!!.resources.getColor(R.color.text_enabled_true))
+    }
 }
 
 /** 이미지 가져오기 */

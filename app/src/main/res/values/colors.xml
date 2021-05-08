@@ -11,4 +11,7 @@
     <color name="alpha_dark">#33000000</color>
     <color name="scrollbar_thumb">#880000</color>
 
+    <color name="text_enabled_true">#000000</color>
+    <color name="text_enabled_false">#33000000</color>
+
 </resources>
