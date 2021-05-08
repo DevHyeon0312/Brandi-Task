@@ -15,7 +15,8 @@
         android:theme="@style/Theme.KakaoImageSearch">
 
         <activity android:name="com.devhyeon.kakaoimagesearch.view.activities.IntroActivity"
-            android:theme="@style/Theme.ActivityFullScreen">
+            android:theme="@style/Theme.ActivityFullScreen"
+            android:configChanges="orientation|keyboardHidden|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,7 +25,8 @@
         </activity>
 
         <activity android:name="com.devhyeon.kakaoimagesearch.view.activities.MainActivity"
-            android:theme="@style/Theme.ActivityFullScreen"/>
+            android:theme="@style/Theme.ActivityFullScreen"
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
 
     </application>
 
