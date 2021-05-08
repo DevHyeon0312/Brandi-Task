@@ -13,13 +13,13 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="@dimen/view_padding_image_thumbnail">
 
         <ImageView
             android:id="@+id/iv_thumbnail"
             android:layout_width="@dimen/view_size_image_thumbnail"
             android:layout_height="@dimen/view_size_image_thumbnail"
-            android:padding="@dimen/view_padding_image_thumbnail"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -10,8 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.devhyeon.kakaoimagesearch.R
 import com.devhyeon.kakaoimagesearch.databinding.ItemImageBinding
 import com.devhyeon.kakaoimagesearch.data.api.KakaoImageData
-import com.devhyeon.kakaoimagesearch.utils.Status
-import com.devhyeon.kakaoimagesearch.utils.loadImage
+import com.devhyeon.kakaoimagesearch.utils.*
 
 class ImageListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var imageList: MutableList<KakaoImageData> = mutableListOf()
@@ -57,6 +56,10 @@ class ImageListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private inner class TrackListViewHolder(private val viewDataBinding: ViewDataBinding) : RecyclerView.ViewHolder(viewDataBinding.root) {
         fun onBind(imgData: KakaoImageData) {
             (viewDataBinding as ItemImageBinding).imgData = imgData
+            //뷰 사이즈 재조정
+            val viewSize = viewDataBinding.ivThumbnail.deviceWidth / 3
+            viewDataBinding.ivThumbnail.setSize(viewSize)
+
             //이미지 load
             viewDataBinding.ivThumbnail.loadImage(imgData.thumbnail_url)
         }
