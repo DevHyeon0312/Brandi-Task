@@ -1,5 +1,6 @@
 package com.devhyeon.kakaoimagesearch.view.activities
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -8,6 +9,7 @@ import androidx.lifecycle.Observer
 import com.devhyeon.kakaoimagesearch.databinding.ActivityIntroBinding
 import com.devhyeon.kakaoimagesearch.view.base.BaseActivity
 import com.devhyeon.kakaoimagesearch.utils.Status
+import com.devhyeon.kakaoimagesearch.view.dialogs.ErrorDialog
 import com.devhyeon.kakaoimagesearch.viewmodels.IntroViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -40,7 +42,6 @@ class IntroActivity : BaseActivity() {
     }
 
     private fun introViewModelObserver() {
-        val toast = Toast.makeText(this,"ERROR",Toast.LENGTH_SHORT)
         //네트워크 연결상태 결과
         introViewModel.networkState.observe(this@IntroActivity, Observer {
             when(it) {
@@ -50,7 +51,7 @@ class IntroActivity : BaseActivity() {
                     introViewModel.runDelay()
                 }
                 is Status.Failure -> {
-                    toast.show()
+                    showDialog()
                 }
             }
         })
@@ -63,7 +64,7 @@ class IntroActivity : BaseActivity() {
                     startMainActivity()
                 }
                 is Status.Failure -> {
-                    toast.show()
+                    showDialog()
                 }
             }
         })
@@ -73,5 +74,18 @@ class IntroActivity : BaseActivity() {
     private fun startMainActivity() {
         startActivity(Intent(this, MainActivity::class.java))
         finish()
+    }
+
+    private fun showDialog() {
+        val positiveButtonClick = DialogInterface.OnClickListener { dialog, which ->
+            dialog!!.dismiss()
+            introViewModel.runCheckNetworkState(this@IntroActivity)
+        }
+        val negativeButtonClick =DialogInterface.OnClickListener { dialog, which -> finish() }
+        ErrorDialog.NetworkErrorDialog()
+            .create(this@IntroActivity)
+            .addPositiveButtonClick(positiveButtonClick)
+            .addNegativeButtonClick(negativeButtonClick)
+            .show()
     }
 }
