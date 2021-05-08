@@ -2,15 +2,16 @@ package com.devhyeon.kakaoimagesearch.view.activities
 
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.request.RequestOptions
 import com.devhyeon.kakaoimagesearch.databinding.ActivityImageDetailBinding
 import com.devhyeon.kakaoimagesearch.utils.*
 import com.devhyeon.kakaoimagesearch.view.base.BaseActivity
-import kotlinx.coroutines.launch
 
+/**
+ * 이미지 상세화면 : 전체화면 표시
+ * - 세로가 긴경우에 스크롤 되는지 여부는 기기를 가로모드로 확인하면 쉽게 확인 가능합니다.
+ * */
 class ImageDetailActivity : BaseActivity() {
     companion object {
         private val TAG = ImageDetailActivity::class.java.name
