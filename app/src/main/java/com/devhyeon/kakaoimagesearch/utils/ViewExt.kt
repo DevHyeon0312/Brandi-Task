@@ -67,11 +67,30 @@ val View.deviceWidth : Int
         return displayMetrics.widthPixels
     }
 
+/** 디바이스 세로 크기  구해오기 */
+val View.deviceHeight : Int
+    get() {
+        val displayMetrics = DisplayMetrics()
+        val display = this.context.display
+        display?.getRealMetrics(displayMetrics)
+        return displayMetrics.heightPixels
+    }
+
+
 /** 뷰 가로세로 사이즈 변경 */
 fun View.setSize(value: Int) {
     val lp = layoutParams
     lp?.let {
         lp.width = value
+        lp.height = value
+        layoutParams = lp
+    }
+}
+
+/** 뷰 세로 사이즈 변경 */
+fun View.setHeightSize(value: Int) {
+    val lp = layoutParams
+    lp?.let {
         lp.height = value
         layoutParams = lp
     }

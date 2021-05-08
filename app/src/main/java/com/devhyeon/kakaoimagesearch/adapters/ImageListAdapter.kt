@@ -1,9 +1,12 @@
 package com.devhyeon.kakaoimagesearch.adapters
 
+import android.content.Intent
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
@@ -11,10 +14,10 @@ import com.devhyeon.kakaoimagesearch.R
 import com.devhyeon.kakaoimagesearch.databinding.ItemImageBinding
 import com.devhyeon.kakaoimagesearch.data.api.KakaoImageData
 import com.devhyeon.kakaoimagesearch.utils.*
+import com.devhyeon.kakaoimagesearch.view.activities.ImageDetailActivity
 
-class ImageListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ImageListAdapter(val fragment: Fragment) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var imageList: MutableList<KakaoImageData> = mutableListOf()
-
     /** 스크롤 감지 LiveData */
     private val _scrollState = MutableLiveData<Status<Boolean>>()
     val scrollState: LiveData<Status<Boolean>> get() = _scrollState
@@ -62,6 +65,21 @@ class ImageListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
             //이미지 load
             viewDataBinding.ivThumbnail.loadImage(imgData.thumbnail_url)
+
+            //ClickEvent
+            viewDataBinding.ivThumbnail.setOnClickListener { startDetail(imgData) }
+        }
+    }
+
+    fun startDetail(imgData: KakaoImageData) {
+        fragment.context!!.let{
+            val intent = Intent (it, ImageDetailActivity::class.java)
+            intent.putExtra("image_url",imgData.image_url)
+            intent.putExtra("display_sitename",imgData.display_sitename)
+            intent.putExtra("datetime",imgData.datetime)
+            intent.putExtra("width",imgData.width)
+            intent.putExtra("height",imgData.height)
+            it.startActivity(intent)
         }
     }
 }

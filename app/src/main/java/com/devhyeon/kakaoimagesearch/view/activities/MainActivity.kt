@@ -26,7 +26,7 @@ class MainActivity : BaseActivity() {
         return binding.root
     }
 
-    override fun addObserver() { }
+    override fun addObserver() {}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

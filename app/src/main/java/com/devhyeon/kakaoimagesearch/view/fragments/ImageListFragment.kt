@@ -1,5 +1,6 @@
 package com.devhyeon.kakaoimagesearch.view.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +20,7 @@ import com.devhyeon.kakaoimagesearch.define.error.UNKNOWN_ERROR
 import com.devhyeon.kakaoimagesearch.utils.Status
 import com.devhyeon.kakaoimagesearch.utils.toGone
 import com.devhyeon.kakaoimagesearch.utils.toVisible
+import com.devhyeon.kakaoimagesearch.view.activities.ImageDetailActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
 /** 이미지 검색결과 UI Fragment */
@@ -38,7 +40,7 @@ class ImageListFragment : BaseFragment() {
     private val imageLiveData = ImageSearchLiveData.get()
 
     //어댑터
-    private var imageListAdapter: ImageListAdapter? = ImageListAdapter()
+    private var imageListAdapter: ImageListAdapter? = ImageListAdapter(this)
 
     //API 요청에 필요한 데이터
     private val sort = "accuracy"   //고정 accuracy(정확도순) 또는 recency(최신순)
@@ -214,4 +216,5 @@ class ImageListFragment : BaseFragment() {
             }
         }
     }
+
 }
