@@ -6,57 +6,70 @@
     android:layout_height="match_parent"
     android:background="@color/black">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/contents_view"
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:background="@color/black"
         android:orientation="vertical">
 
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:indeterminateTint="@color/white"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/iv_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tv_displaySiteName"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/contents_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/alpha_dark"
-            android:gravity="end"
-            android:text="TEST TET"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toTopOf="@+id/tv_dateTime"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tv_dateTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/alpha_dark"
-            android:gravity="end"
-            android:text="TEST TET"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            <ImageView
+                android:id="@+id/iv_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_displaySiteName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/alpha_dark"
+                android:gravity="end"
+                android:text="TEST TET"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toTopOf="@+id/tv_dateTime"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_dateTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/alpha_dark"
+                android:gravity="end"
+                android:text="TEST TET"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </RelativeLayout>
+
+
 
 </androidx.core.widget.NestedScrollView>
