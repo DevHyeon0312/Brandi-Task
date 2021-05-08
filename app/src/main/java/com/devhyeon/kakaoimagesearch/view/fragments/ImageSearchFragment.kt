@@ -6,15 +6,14 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.devhyeon.kakaoimagesearch.databinding.FragmentImageSearchBinding
 import com.devhyeon.kakaoimagesearch.define.MS_1000
 import com.devhyeon.kakaoimagesearch.define.error.UNKNOWN_ERROR
 import com.devhyeon.kakaoimagesearch.view.base.BaseFragment
 import com.devhyeon.kakaoimagesearch.data.livedata.ImageSearchLiveData
-import com.devhyeon.kakaoimagesearch.utils.util.Status
-import com.devhyeon.kakaoimagesearch.utils.util.hideKeyboard
+import com.devhyeon.kakaoimagesearch.utils.Status
+import com.devhyeon.kakaoimagesearch.utils.hideKeyboard
 import kotlinx.coroutines.*
 
 /** 이미지 검색 UI Fragment */

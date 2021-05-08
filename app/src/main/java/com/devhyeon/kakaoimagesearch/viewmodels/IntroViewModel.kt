@@ -6,8 +6,8 @@ import com.devhyeon.kakaoimagesearch.R
 import com.devhyeon.kakaoimagesearch.define.MS_500
 import com.devhyeon.kakaoimagesearch.define.NETWORK_DISCONNECT
 import com.devhyeon.kakaoimagesearch.define.error.UNKNOWN_ERROR
-import com.devhyeon.kakaoimagesearch.utils.util.Status
-import com.devhyeon.kakaoimagesearch.utils.util.checkNetworkState
+import com.devhyeon.kakaoimagesearch.utils.Status
+import com.devhyeon.kakaoimagesearch.utils.checkNetworkState
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.jetbrains.annotations.NotNull

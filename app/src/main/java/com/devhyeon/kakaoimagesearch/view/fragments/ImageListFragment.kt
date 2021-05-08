@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import com.devhyeon.kakaoimagesearch.R
 import com.devhyeon.kakaoimagesearch.databinding.FragmentImageListBinding
 import com.devhyeon.kakaoimagesearch.define.API_KEY
 import com.devhyeon.kakaoimagesearch.viewmodels.KakaoApiViewModel
@@ -13,10 +14,11 @@ import com.devhyeon.kakaoimagesearch.adapters.ImageListAdapter
 import com.devhyeon.kakaoimagesearch.data.api.KakaoImageData
 import com.devhyeon.kakaoimagesearch.view.base.BaseFragment
 import com.devhyeon.kakaoimagesearch.data.livedata.ImageSearchLiveData
-import com.devhyeon.kakaoimagesearch.utils.util.Status
-import com.devhyeon.kakaoimagesearch.utils.util.hideKeyboard
-import com.devhyeon.kakaoimagesearch.utils.util.toGone
-import com.devhyeon.kakaoimagesearch.utils.util.toVisible
+import com.devhyeon.kakaoimagesearch.define.error.NETWORK_ERROR
+import com.devhyeon.kakaoimagesearch.define.error.UNKNOWN_ERROR
+import com.devhyeon.kakaoimagesearch.utils.Status
+import com.devhyeon.kakaoimagesearch.utils.toGone
+import com.devhyeon.kakaoimagesearch.utils.toVisible
 import org.koin.android.viewmodel.ext.android.viewModel
 
 /** 이미지 검색결과 UI Fragment */
@@ -42,6 +44,7 @@ class ImageListFragment : BaseFragment() {
     private val sort = "accuracy"   //고정 accuracy(정확도순) 또는 recency(최신순)
     private val size = 30           //고정
     private var page = 1            //1 ~ 50 까지 요청 가능. 단, isEnd 가 false 일때
+    private var query = ""          //검색어
 
     override fun initViewBinding(
         inflater: LayoutInflater,
@@ -58,6 +61,10 @@ class ImageListFragment : BaseFragment() {
     override fun init() {
         binding.rvImageList.adapter = imageListAdapter
         page = 1
+
+        binding.btnRefresh.setOnClickListener {
+            kakaoApiViewModel.loadSearchImageData(lifecycleScope, query,sort,page,size, API_KEY)
+        }
     }
 
     override fun addObserver() {
@@ -81,7 +88,7 @@ class ImageListFragment : BaseFragment() {
                 }
                 is Status.Failure -> {
                     //해당 뷰 보여주기
-                    showError()
+                    showError(it.errorCode!!)
                 }
             }
         })
@@ -97,15 +104,14 @@ class ImageListFragment : BaseFragment() {
                     if(isRun) {
                         if (it.data!!.toString().isNotEmpty()) {
                             page = 1
-                            kakaoApiViewModel.loadSearchImageData(lifecycleScope, it.data.toString(),sort,page,size, API_KEY)
+                            query = it.data.toString()
+                            kakaoApiViewModel.loadSearchImageData(lifecycleScope, query, sort, page, size, API_KEY)
                         } else {
                             showEmpty()
                         }
                     }
                 }
-                is Status.Failure -> {
-                    showError()
-                }
+                is Status.Failure -> {}
             }
         })
 
@@ -116,7 +122,8 @@ class ImageListFragment : BaseFragment() {
                 is Status.Success -> {
                     if(it.data!! && page < 50) {
                         page += 1
-                        kakaoApiViewModel.loadSearchImageData(lifecycleScope, it.data.toString(),sort,page,size, API_KEY)
+                        query = it.data.toString()
+                        kakaoApiViewModel.loadSearchImageData(lifecycleScope, query, sort, page, size, API_KEY)
                     }
                 }
                 is Status.Failure -> {}
@@ -177,6 +184,7 @@ class ImageListFragment : BaseFragment() {
         binding.emptyView.toVisible()
         binding.errorView.toGone()
     }
+
     /** 검색결과 있음 */
     private fun showNotEmpty() {
         binding.loaderView.toGone()
@@ -187,11 +195,23 @@ class ImageListFragment : BaseFragment() {
     }
 
     /** 에러 */
-    private fun showError() {
+    private fun showError(errorCode : Int) {
+        setErrorMessage(errorCode)
         binding.loaderView.toGone()
         binding.contentsView.toGone()
         binding.rvImageLoader.toGone()
         binding.emptyView.toGone()
         binding.errorView.toVisible()
+    }
+
+    private fun setErrorMessage(errorCode : Int) {
+        when(errorCode) {
+            UNKNOWN_ERROR -> {
+                binding.tvErrorMessage.text = getString(R.string.unknown_error)
+            }
+            NETWORK_ERROR -> {
+                binding.tvErrorMessage.text = getString(R.string.network_disconnect)
+            }
+        }
     }
 }

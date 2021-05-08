@@ -2,18 +2,16 @@ package com.devhyeon.kakaoimagesearch.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.view.isGone
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.devhyeon.kakaoimagesearch.R
 import com.devhyeon.kakaoimagesearch.databinding.ItemImageBinding
 import com.devhyeon.kakaoimagesearch.data.api.KakaoImageData
-import com.devhyeon.kakaoimagesearch.utils.util.Status
-import com.devhyeon.kakaoimagesearch.utils.util.loadImage
+import com.devhyeon.kakaoimagesearch.utils.Status
+import com.devhyeon.kakaoimagesearch.utils.loadImage
 
 class ImageListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var imageList: MutableList<KakaoImageData> = mutableListOf()

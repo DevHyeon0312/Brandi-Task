@@ -2,7 +2,7 @@ package com.devhyeon.kakaoimagesearch.data.livedata
 
 import androidx.annotation.MainThread
 import androidx.lifecycle.MutableLiveData
-import com.devhyeon.kakaoimagesearch.utils.util.Status
+import com.devhyeon.kakaoimagesearch.utils.Status
 
 /** 이미지 검색어를 공유하기 위한 MutableLiveData */
 class ImageSearchLiveData : MutableLiveData<Status<String>>() {

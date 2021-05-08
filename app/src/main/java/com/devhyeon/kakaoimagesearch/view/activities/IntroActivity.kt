@@ -7,7 +7,7 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.devhyeon.kakaoimagesearch.databinding.ActivityIntroBinding
 import com.devhyeon.kakaoimagesearch.view.base.BaseActivity
-import com.devhyeon.kakaoimagesearch.utils.util.Status
+import com.devhyeon.kakaoimagesearch.utils.Status
 import com.devhyeon.kakaoimagesearch.viewmodels.IntroViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 

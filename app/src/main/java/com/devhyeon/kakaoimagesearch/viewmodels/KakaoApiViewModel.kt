@@ -1,9 +1,10 @@
 package com.devhyeon.kakaoimagesearch.viewmodels
 
 import androidx.lifecycle.*
+import com.devhyeon.kakaoimagesearch.define.error.NETWORK_ERROR
 import com.devhyeon.kakaoimagesearch.network.kakao.KakaoAPI
 import com.devhyeon.kakaoimagesearch.network.kakao.reponse.KakaoImageResponse
-import com.devhyeon.kakaoimagesearch.utils.util.Status
+import com.devhyeon.kakaoimagesearch.utils.Status
 import kotlinx.coroutines.launch
 
 class KakaoApiViewModel constructor(private val kakaoAPI: KakaoAPI) : ViewModel() {
@@ -21,7 +22,7 @@ class KakaoApiViewModel constructor(private val kakaoAPI: KakaoAPI) : ViewModel(
             }.onSuccess {
                 _ImageResponse.value = Status.Success(response!!)
             }.onFailure {
-                _ImageResponse.value = Status.Failure(it.hashCode(), it.message!!)
+                _ImageResponse.value = Status.Failure(NETWORK_ERROR, it.message!!)
             }
         }
     }
