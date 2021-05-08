@@ -80,7 +80,9 @@ class ImageSearchFragment : BaseFragment() {
                 imageLiveData.postValue(Status.Run(""))
                 delay(MS_1000)
             }.onSuccess {
-                binding.etSearch.hideKeyboard()
+                if(s.toString().isNotEmpty()) {
+                    binding.etSearch.hideKeyboard()
+                }
                 imageLiveData.postValue(Status.Success(s.toString()))
             }.onFailure {
                 imageLiveData.postValue(Status.Failure(UNKNOWN_ERROR,it.message!!))
