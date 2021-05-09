@@ -4,7 +4,6 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.devhyeon.kakaoimagesearch.databinding.ActivityIntroBinding
 import com.devhyeon.kakaoimagesearch.view.base.BaseActivity
@@ -38,9 +37,11 @@ class IntroActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //네트워크 검사시작
         introViewModel.runCheckNetworkState(this@IntroActivity)
     }
 
+    /** 네트워크 상태결과 Observer */
     private fun introViewModelObserver() {
         //네트워크 연결상태 결과
         introViewModel.networkState.observe(this@IntroActivity, Observer {
@@ -76,12 +77,17 @@ class IntroActivity : BaseActivity() {
         finish()
     }
 
+    /** 네트워크 미연결시 보여주는 Dialog */
     private fun showDialog() {
+        //재시도 Button ClickListener
         val positiveButtonClick = DialogInterface.OnClickListener { dialog, which ->
             dialog!!.dismiss()
             introViewModel.runCheckNetworkState(this@IntroActivity)
         }
+        //종료 Button ClickListener
         val negativeButtonClick =DialogInterface.OnClickListener { dialog, which -> finish() }
+
+        //Dialog Create and addListener and show (Custom: view -> dialogs -> ErrorDialog )
         ErrorDialog.NetworkErrorDialog()
             .create(this@IntroActivity)
             .addPositiveButtonClick(positiveButtonClick)
