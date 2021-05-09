@@ -77,8 +77,6 @@ class ImageListAdapter(val fragment: Fragment) : RecyclerView.Adapter<RecyclerVi
             intent.putExtra("image_url",imgData.image_url)
             intent.putExtra("display_sitename",imgData.display_sitename)
             intent.putExtra("datetime",imgData.datetime)
-            intent.putExtra("width",imgData.width)
-            intent.putExtra("height",imgData.height)
             it.startActivity(intent)
         }
     }

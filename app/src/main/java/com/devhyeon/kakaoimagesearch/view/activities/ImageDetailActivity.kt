@@ -1,9 +1,15 @@
 package com.devhyeon.kakaoimagesearch.view.activities
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
+import com.devhyeon.kakaoimagesearch.R
 import com.devhyeon.kakaoimagesearch.databinding.ActivityImageDetailBinding
 import com.devhyeon.kakaoimagesearch.utils.*
 import com.devhyeon.kakaoimagesearch.view.base.BaseActivity
@@ -20,8 +26,6 @@ class ImageDetailActivity : BaseActivity() {
     var imageUrl : String? = null
     var displaySiteName : String? = null
     var dateTime : String? = null
-    var width : Int = 0
-    var height : Int = 0
 
     private lateinit var binding : ActivityImageDetailBinding
 
@@ -38,21 +42,56 @@ class ImageDetailActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        init()
+        loadImage()
+        addListener()
+    }
+
+    /** 데이터 init  */
+    private fun init() {
         imageUrl = intent.getStringExtra("image_url")
         displaySiteName = intent.getStringExtra("display_sitename")
         dateTime = intent.getStringExtra("datetime")
-        height = intent.getIntExtra("height",0)
-        width = intent.getIntExtra("width",0)
+    }
 
-        //이미지 로드
+    /** 사용하는 Listener */
+    private fun addListener() {
+        binding.btnRefresh.setOnClickListener {
+            loadImage()
+        }
+    }
+
+    /** 이미지 로드 */
+    private fun loadImage() {
+        binding.errorView.toGone()
+        binding.loaderView.toVisible()
+
         Glide
             .with(this@ImageDetailActivity)
             .load(imageUrl!!)
-            .centerCrop()
+            .fitCenter()
             .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .listener(createLogListener())
             .into(binding.ivImage)
+    }
 
-        binding.tvDisplaySiteName.text = displaySiteName
-        binding.tvDateTime.text = dateTime
+    /** 이미지 로드 CallBack */
+    private fun createLogListener(): RequestListener<Drawable> {
+        return object : RequestListener<Drawable> {
+            override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                binding.loaderView.toGone()
+                binding.errorView.toGone()
+                binding.tvDisplaySiteName.text = displaySiteName
+                binding.tvDateTime.text = dateTime
+                return false
+            }
+
+            override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+                binding.loaderView.toGone()
+                binding.errorView.toVisible()
+                binding.tvErrorMessage.text = getString(R.string.image_error)
+                return false
+            }
+        }
     }
 }
