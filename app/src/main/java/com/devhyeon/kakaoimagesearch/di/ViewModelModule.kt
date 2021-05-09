@@ -5,6 +5,7 @@ import com.devhyeon.kakaoimagesearch.viewmodels.IntroViewModel
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
+/** ViewModel 모듈 */
 val ViewModelModule = module {
     viewModel { IntroViewModel() }
 
