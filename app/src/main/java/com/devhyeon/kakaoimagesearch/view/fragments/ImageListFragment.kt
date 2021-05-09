@@ -60,15 +60,28 @@ class ImageListFragment : BaseFragment() {
         return binding.root
     }
 
+    /** 데이터 init */
     override fun init() {
         binding.rvImageList.adapter = imageListAdapter
         page = 1
+    }
 
+
+    /** View 생성이 완료됨 */
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        addListener()
+    }
+
+    /** 사용되는 Listener */
+    private fun addListener() {
+        //새로고침 ClickListener
         binding.btnRefresh.setOnClickListener {
             kakaoApiViewModel.loadSearchImageData(lifecycleScope, query,sort,page,size, API_KEY)
         }
     }
 
+    /** 사용되는 Observer 추가 */
     override fun addObserver() {
         /** API 결과 */
         kakaoApiViewModel.imageResponse.observe(this@ImageListFragment, Observer {
@@ -206,6 +219,7 @@ class ImageListFragment : BaseFragment() {
         binding.errorView.toVisible()
     }
 
+    /** 에러메시지 설정 */
     private fun setErrorMessage(errorCode : Int) {
         when(errorCode) {
             UNKNOWN_ERROR -> {

@@ -15,6 +15,7 @@ import com.devhyeon.kakaoimagesearch.define.MS_1000
 import com.devhyeon.kakaoimagesearch.define.error.UNKNOWN_ERROR
 import com.devhyeon.kakaoimagesearch.view.base.BaseFragment
 import com.devhyeon.kakaoimagesearch.data.livedata.ImageSearchLiveData
+import com.devhyeon.kakaoimagesearch.define.API_KEY
 import com.devhyeon.kakaoimagesearch.utils.Status
 import com.devhyeon.kakaoimagesearch.utils.enableFalse
 import com.devhyeon.kakaoimagesearch.utils.enableTrue
@@ -51,7 +52,20 @@ class ImageSearchFragment : BaseFragment() {
     }
 
 
-    override fun init() {
+    override fun init() {}
+
+    override fun addObserver() {}
+
+    /** View 생성이 완료됨 */
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        addListener()
+    }
+
+    /** 사용되는 Listener */
+    private fun addListener() {
+        //검색어 변경에 따른 Listener
         binding.etSearch.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
                 changeTextCancel()
@@ -61,18 +75,12 @@ class ImageSearchFragment : BaseFragment() {
                 changeText(s)
             }
         })
-
+        //취소 ButtonClickListener
         binding.cancelButton.setOnClickListener {
             binding.cancelButton.enableFalse()
             binding.etSearch.setText("")
         }
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
-
-    override fun addObserver() {}
 
 
     /** 텍스트 변경시작 */
