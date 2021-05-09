@@ -2,18 +2,18 @@
     <string name="app_name">kakao image search</string>
 
     <!-- Message -->
-    <string name="network_connect">네트워크가 연결되어 있습니다.</string>
-    <string name="network_disconnect">네트워크가 연결되어 있지 않습니다.</string>
-    <string name="unknown_error">알수 없는 에러가 발생하였습니다.</string>
-    <string name="image_error">이미지를 가져오는데 실패했습니다.</string>
+    <string name="network_connect">The network is connected.</string>
+    <string name="network_disconnect">The network is not connected.</string>
+    <string name="unknown_error">An unknown error has occurred.</string>
+    <string name="image_error">Failed to import image.</string>
 
-    <string name="data_empty">검색 결과가 없습니다</string>
+    <string name="data_empty">Search results not found.</string>
     <!-- Description -->
-    <string name="logo_description">로고이미지</string>
+    <string name="logo_description">logo Image</string>
 
     <!-- View Text -->
-    <string name="button_refresh">새로고침</string>
-    <string name="button_retry">재시도</string>
-    <string name="button_finish">종료</string>
+    <string name="button_refresh">Refresh</string>
+    <string name="button_retry">Retry</string>
+    <string name="button_finish">Finish</string>
 
 </resources>
