@@ -14,4 +14,5 @@
     <color name="text_enabled_true">#000000</color>
     <color name="text_enabled_false">#33000000</color>
 
+    <color name="alpha_list_item_dark">#88000000</color>
 </resources>

@@ -1,6 +1,5 @@
 package com.devhyeon.kakaoimagesearch.view.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -20,7 +19,6 @@ import com.devhyeon.kakaoimagesearch.define.error.UNKNOWN_ERROR
 import com.devhyeon.kakaoimagesearch.utils.Status
 import com.devhyeon.kakaoimagesearch.utils.toGone
 import com.devhyeon.kakaoimagesearch.utils.toVisible
-import com.devhyeon.kakaoimagesearch.view.activities.ImageDetailActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
 /** 이미지 검색결과 UI Fragment */
@@ -77,6 +75,10 @@ class ImageListFragment : BaseFragment() {
     private fun addListener() {
         //새로고침 ClickListener
         binding.btnRefresh.setOnClickListener {
+            kakaoApiViewModel.loadSearchImageData(lifecycleScope, query,sort,page,size, API_KEY)
+        }
+
+        binding.btnLoaderRefresh.setOnClickListener {
             kakaoApiViewModel.loadSearchImageData(lifecycleScope, query,sort,page,size, API_KEY)
         }
     }
@@ -169,6 +171,7 @@ class ImageListFragment : BaseFragment() {
         binding.loaderView.toVisible()
         binding.contentsView.toGone()
         binding.rvImageLoader.toGone()
+        binding.btnLoaderRefresh.toGone()
         binding.emptyView.toGone()
         binding.errorView.toGone()
     }
@@ -178,6 +181,7 @@ class ImageListFragment : BaseFragment() {
         binding.loaderView.toGone()
         binding.contentsView.toVisible()
         binding.rvImageLoader.toVisible()
+        binding.btnLoaderRefresh.toGone()
         binding.emptyView.toGone()
         binding.errorView.toGone()
     }
@@ -196,6 +200,7 @@ class ImageListFragment : BaseFragment() {
         binding.loaderView.toGone()
         binding.contentsView.toGone()
         binding.rvImageLoader.toGone()
+        binding.btnLoaderRefresh.toGone()
         binding.emptyView.toVisible()
         binding.errorView.toGone()
     }
@@ -205,18 +210,34 @@ class ImageListFragment : BaseFragment() {
         binding.loaderView.toGone()
         binding.contentsView.toVisible()
         binding.rvImageLoader.toGone()
+        binding.btnLoaderRefresh.toGone()
         binding.emptyView.toGone()
         binding.errorView.toGone()
     }
 
     /** 에러 */
     private fun showError(errorCode : Int) {
+        if(page == 1) {
+            showFirstError(errorCode)
+        } else {
+            showMoreError()
+        }
+    }
+
+    /** 최초검색시 에러 */
+    private fun showFirstError(errorCode : Int) {
         setErrorMessage(errorCode)
         binding.loaderView.toGone()
         binding.contentsView.toGone()
         binding.rvImageLoader.toGone()
+        binding.btnLoaderRefresh.toGone()
         binding.emptyView.toGone()
         binding.errorView.toVisible()
+    }
+    /** 더 불러올 때 에러 */
+    private fun showMoreError() {
+        binding.rvImageLoader.toGone()
+        binding.btnLoaderRefresh.toVisible()
     }
 
     /** 에러메시지 설정 */

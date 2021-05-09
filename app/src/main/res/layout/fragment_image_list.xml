@@ -76,6 +76,17 @@
             android:background="@color/white"
             android:indeterminateTint="@color/black" />
 
+        <Button
+            android:id="@+id/btn_loader_refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_refresh"
+            android:textStyle="bold"
+            android:background="@color/alpha_list_item_dark"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true" />
+
     </RelativeLayout>
 
     <!-- 비어있는 상태에 보여줄 ViewGroup -->
