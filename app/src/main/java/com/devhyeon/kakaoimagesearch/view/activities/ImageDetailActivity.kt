@@ -23,9 +23,9 @@ class ImageDetailActivity : BaseActivity() {
         private val TAG = ImageDetailActivity::class.java.name
     }
 
-    var imageUrl : String? = null
-    var displaySiteName : String? = null
-    var dateTime : String? = null
+    var imageUrl : String? = null           //이미지 URL
+    var displaySiteName : String? = null    //이미지 출처
+    var dateTime : String? = null           //이미지 등록시간
 
     private lateinit var binding : ActivityImageDetailBinding
 
