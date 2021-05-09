@@ -8,6 +8,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.ImageView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.devhyeon.kakaoimagesearch.R
 
 /** View Visible */
@@ -48,6 +49,7 @@ fun ImageView.loadImage(url: String) {
     Glide
         .with(this)
         .load(url)
+        .transition(DrawableTransitionOptions.withCrossFade(100))
         .into(this)
 }
 
