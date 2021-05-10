@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".view.activities.MainActivity">
 
+    <!-- 앱 바 -->
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
@@ -37,6 +38,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
+    <!-- 메인 컨텐츠 -->
     <FrameLayout
         android:id="@+id/fl_image_list"
         android:layout_width="match_parent"

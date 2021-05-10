@@ -47,9 +47,9 @@ class ImageListFragment : BaseFragment() {
     private var query = ""          //검색어
 
     override fun initViewBinding(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ) {
         _binding = FragmentImageListBinding.inflate(inflater, container, false)
     }

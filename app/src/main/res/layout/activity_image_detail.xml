@@ -7,6 +7,7 @@
     android:background="@color/black"
     android:orientation="vertical">
 
+    <!-- 이미지를 로드중일 때 보여줄 ViewGroup-->
     <RelativeLayout
         android:id="@+id/loader_view"
         android:layout_width="match_parent"
@@ -27,6 +28,7 @@
             app:layout_constraintTop_toTopOf="parent" />
     </RelativeLayout>
 
+    <!-- 이미지 로드가 완료되면 보여줄 ViewGroup-->
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
