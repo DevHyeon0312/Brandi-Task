@@ -224,6 +224,7 @@ class ImageListFragment : BaseFragment() {
             /* 더 불러올 때 에러 */
             fun moreErrorView() {
                 hideView()
+                binding.contentsView.toVisible()
                 binding.btnLoaderRefresh.toVisible()
             }
             /* 뷰 숨기기 */
