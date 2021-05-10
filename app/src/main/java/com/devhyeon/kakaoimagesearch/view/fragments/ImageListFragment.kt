@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.devhyeon.kakaoimagesearch.R
@@ -62,6 +63,7 @@ class ImageListFragment : BaseFragment() {
     override fun init() {
         binding.rvImageList.adapter = imageListAdapter
         page = 1
+        showContents()
     }
 
 
@@ -124,7 +126,8 @@ class ImageListFragment : BaseFragment() {
                             query = it.data.toString()
                             kakaoApiViewModel.loadSearchImageData(lifecycleScope, query, sort, page, size, API_KEY)
                         } else {
-                            showEmpty()
+                            imageListAdapter!!.clearItem()
+                            showContents()
                         }
                     }
                 }
@@ -157,97 +160,95 @@ class ImageListFragment : BaseFragment() {
         }
     }
 
-    /** 로딩 시작 */
+    /** 로딩 시작시 보여주는 화면 */
     private fun showLoader() {
         if(page == 1) {
-            showFirstLoader()
+            BindingView.Show(binding).firstLoaderView()
         } else {
-            showMoreLoader()
+            BindingView.Show(binding).moreLoaderView()
         }
     }
 
-    /** 최초검색 로딩 */
-    private fun showFirstLoader() {
-        binding.loaderView.toVisible()
-        binding.contentsView.toGone()
-        binding.rvImageLoader.toGone()
-        binding.btnLoaderRefresh.toGone()
-        binding.emptyView.toGone()
-        binding.errorView.toGone()
-    }
-
-    /** 추가검색 로딩 */
-    private fun showMoreLoader() {
-        binding.loaderView.toGone()
-        binding.contentsView.toVisible()
-        binding.rvImageLoader.toVisible()
-        binding.btnLoaderRefresh.toGone()
-        binding.emptyView.toGone()
-        binding.errorView.toGone()
-    }
-
-    /** 검색 성공 */
-    private fun showContents() {
-        if(imageListAdapter!!.imageList.isEmpty()) {
-            showEmpty()
-        } else {
-            showNotEmpty()
-        }
-    }
-
-    /** 검색결과 없음 */
-    private fun showEmpty() {
-        binding.loaderView.toGone()
-        binding.contentsView.toGone()
-        binding.rvImageLoader.toGone()
-        binding.btnLoaderRefresh.toGone()
-        binding.emptyView.toVisible()
-        binding.errorView.toGone()
-    }
-
-    /** 검색결과 있음 */
-    private fun showNotEmpty() {
-        binding.loaderView.toGone()
-        binding.contentsView.toVisible()
-        binding.rvImageLoader.toGone()
-        binding.btnLoaderRefresh.toGone()
-        binding.emptyView.toGone()
-        binding.errorView.toGone()
-    }
-
-    /** 에러 */
+    /** 에러 발생시에 보여주는 화면 */
     private fun showError(errorCode : Int) {
         if(page == 1) {
-            showFirstError(errorCode)
+            BindingView.Set(binding).errorMessage(errorCode,this@ImageListFragment)
+            BindingView.Show(binding).firstErrorView()
         } else {
-            showMoreError()
+            BindingView.Show(binding).moreErrorView()
         }
     }
 
-    /** 최초검색시 에러 */
-    private fun showFirstError(errorCode : Int) {
-        setErrorMessage(errorCode)
-        binding.loaderView.toGone()
-        binding.contentsView.toGone()
-        binding.rvImageLoader.toGone()
-        binding.btnLoaderRefresh.toGone()
-        binding.emptyView.toGone()
-        binding.errorView.toVisible()
-    }
-    /** 더 불러올 때 에러 */
-    private fun showMoreError() {
-        binding.rvImageLoader.toGone()
-        binding.btnLoaderRefresh.toVisible()
+    /** 검색 성공시에 보여주는 화면 */
+    private fun showContents() {
+        if(imageListAdapter!!.imageList.isEmpty()) {
+            BindingView.Show(binding).emptyView()
+        } else {
+            BindingView.Show(binding).notEmptyView()
+        }
     }
 
-    /** 에러메시지 설정 */
-    private fun setErrorMessage(errorCode : Int) {
-        when(errorCode) {
-            UNKNOWN_ERROR -> {
-                binding.tvErrorMessage.text = getString(R.string.unknown_error)
+    /** Observer 등에서 View 의 Visibility , Value 등의 직접변경을 막기 위해 작성
+     * showLoader, showError, showContents 에서만 아래에 코드를 사용하기 때문에, 이 부분을 수정하면 해당 경우에 보여지는 View 를 전체적으로 변경 가능
+     * ps. 변경코드를 직접 작성하는 코드들로 유지보수시에 고려해야하는 사항이 많아지는 부분을 사전에 예방하기 위함
+     * */
+    private sealed class BindingView(val binding: FragmentImageListBinding) {
+        /** Visibility 에 대한 처리 */
+        class Show(binding: FragmentImageListBinding) : BindingView(binding) {
+            /* 최초검색 로딩 */
+            fun firstLoaderView() {
+                hideView()
+                binding.loaderView.toVisible()
             }
-            NETWORK_ERROR -> {
-                binding.tvErrorMessage.text = getString(R.string.network_disconnect)
+            /* 추가검색 로딩 */
+            fun moreLoaderView() {
+                hideView()
+                binding.contentsView.toVisible()
+                binding.rvImageLoader.toVisible()
+            }
+            /* 검색결과 없음 */
+            fun emptyView() {
+                hideView()
+                binding.emptyView.toVisible()
+            }
+            /* 검색결과 있음 */
+            fun notEmptyView() {
+                hideView()
+                binding.contentsView.toVisible()
+            }
+            /* 최초검색시 에러 */
+            fun firstErrorView() {
+                hideView()
+                binding.errorView.toVisible()
+            }
+            /* 더 불러올 때 에러 */
+            fun moreErrorView() {
+                hideView()
+                binding.btnLoaderRefresh.toVisible()
+            }
+            /* 뷰 숨기기 */
+            private fun hideView() {
+                binding.loaderView.toGone()
+                binding.contentsView.toGone()
+                binding.rvImageLoader.toGone()
+                binding.btnLoaderRefresh.toGone()
+                binding.emptyView.toGone()
+                binding.errorView.toGone()
+            }
+        }
+
+        /** 값에 대한 처리 */
+        class Set(binding: FragmentImageListBinding) : BindingView(binding) {
+            /* 에러메시지 수정 */
+            fun errorMessage(errorCode : Int, fragment: Fragment) {
+                when(errorCode) {
+                    UNKNOWN_ERROR -> {
+                        binding.tvErrorMessage.text = fragment.getString(R.string.unknown_error)
+                    }
+                    NETWORK_ERROR -> {
+                        binding.tvErrorMessage.text = fragment.getString(R.string.network_disconnect)
+                    }
+                }
             }
         }
     }

@@ -43,9 +43,14 @@ class ImageListAdapter(val fragment: Fragment) : RecyclerView.Adapter<RecyclerVi
 
     /** 아이템 최초검색으로 인한 추가 */
     fun createItem(list: List<KakaoImageData>) {
-        imageList.clear()
+        clearItem()
         imageList.addAll(list)
         notifyDataSetChanged()
+    }
+
+    /** 아이템 초기화 */
+    fun clearItem() {
+        imageList.clear()
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
