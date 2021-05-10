@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.devhyeon.kakaoimagesearch">
 
+    <!-- 인터넷 권한 설정
+     보안이슈로 수정되었기에 HTTP 통신이 가능하도록 android:usesCleartextTraffic="true" 설정하여 모든 HTTP 에 대한 허용을 하거나,
+     android:networkSecurityConfig="@xml/network_security_config" 로 xml 안에 작성된 도메인들에 대해서만 HTTP 를 허용하도록 작성 -->
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -14,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KakaoImageSearch"
         android:usesCleartextTraffic="true">
-
+        <!-- 최초실행화면 : 인트로 -->
         <activity android:name="com.devhyeon.kakaoimagesearch.view.activities.IntroActivity"
             android:theme="@style/Theme.ActivityFullScreen"
             android:configChanges="orientation|keyboardHidden|screenSize">
@@ -24,11 +27,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <!-- 메인화면 -->
         <activity android:name="com.devhyeon.kakaoimagesearch.view.activities.MainActivity"
             android:theme="@style/Theme.NoActionBar"
             android:configChanges="orientation|keyboardHidden|screenSize"/>
-
+        <!-- 이미지 확대화면 -->
         <activity android:name=".view.activities.ImageDetailActivity"
             android:theme="@style/Theme.ActivityFullScreen"
             android:configChanges="orientation|keyboardHidden|screenSize"/>
