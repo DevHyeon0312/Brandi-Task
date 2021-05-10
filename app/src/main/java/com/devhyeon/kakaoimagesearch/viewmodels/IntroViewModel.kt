@@ -3,9 +3,9 @@ package com.devhyeon.kakaoimagesearch.viewmodels
 import android.content.Context
 import androidx.lifecycle.*
 import com.devhyeon.kakaoimagesearch.R
-import com.devhyeon.kakaoimagesearch.define.MS_500
-import com.devhyeon.kakaoimagesearch.define.NETWORK_DISCONNECT
-import com.devhyeon.kakaoimagesearch.define.error.UNKNOWN_ERROR
+import com.devhyeon.kakaoimagesearch.constants.MS_500
+import com.devhyeon.kakaoimagesearch.constants.NETWORK_DISCONNECT
+import com.devhyeon.kakaoimagesearch.constants.error.UNKNOWN_ERROR
 import com.devhyeon.kakaoimagesearch.utils.Status
 import com.devhyeon.kakaoimagesearch.utils.checkNetworkState
 import kotlinx.coroutines.delay

@@ -1,4 +1,4 @@
-package com.devhyeon.kakaoimagesearch.define
+package com.devhyeon.kakaoimagesearch.constants
 
 /** 앱에서 API 사용에 필요한 URL 을 정의 */
 const val KAKAO_BASE_URL = "https://dapi.kakao.com"

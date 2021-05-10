@@ -1,4 +1,4 @@
-package com.devhyeon.kakaoimagesearch.define
+package com.devhyeon.kakaoimagesearch.constants
 
 /** 앱에서 사용되는 밀리초를 정의 */
 

@@ -1,6 +1,6 @@
 package com.devhyeon.kakaoimagesearch.di.network
 
-import com.devhyeon.kakaoimagesearch.define.KAKAO_BASE_URL
+import com.devhyeon.kakaoimagesearch.constants.KAKAO_BASE_URL
 import com.devhyeon.kakaoimagesearch.network.kakao.KakaoAPI
 import com.devhyeon.kakaoimagesearch.network.kakao.repository.KakaoRepository
 import com.devhyeon.kakaoimagesearch.network.kakao.repository.KakaoRepositoryImp

@@ -1,6 +1,6 @@
 package com.devhyeon.kakaoimagesearch.network.kakao.service
 
-import com.devhyeon.kakaoimagesearch.define.KAKAO_SEARCH_IMAGE_URL
+import com.devhyeon.kakaoimagesearch.constants.KAKAO_SEARCH_IMAGE_URL
 import com.devhyeon.kakaoimagesearch.network.kakao.reponse.KakaoImageResponse
 import retrofit2.http.GET
 import retrofit2.http.Header

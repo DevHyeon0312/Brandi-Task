@@ -1,7 +1,7 @@
 package com.devhyeon.kakaoimagesearch.viewmodels
 
 import androidx.lifecycle.*
-import com.devhyeon.kakaoimagesearch.define.error.NETWORK_ERROR
+import com.devhyeon.kakaoimagesearch.constants.error.NETWORK_ERROR
 import com.devhyeon.kakaoimagesearch.network.kakao.KakaoAPI
 import com.devhyeon.kakaoimagesearch.network.kakao.reponse.KakaoImageResponse
 import com.devhyeon.kakaoimagesearch.utils.Status

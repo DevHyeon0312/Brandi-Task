@@ -8,14 +8,14 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.devhyeon.kakaoimagesearch.R
 import com.devhyeon.kakaoimagesearch.databinding.FragmentImageListBinding
-import com.devhyeon.kakaoimagesearch.define.API_KEY
+import com.devhyeon.kakaoimagesearch.constants.API_KEY
 import com.devhyeon.kakaoimagesearch.viewmodels.KakaoApiViewModel
 import com.devhyeon.kakaoimagesearch.adapters.ImageListAdapter
 import com.devhyeon.kakaoimagesearch.data.api.KakaoImageData
 import com.devhyeon.kakaoimagesearch.view.base.BaseFragment
 import com.devhyeon.kakaoimagesearch.data.livedata.ImageSearchLiveData
-import com.devhyeon.kakaoimagesearch.define.error.NETWORK_ERROR
-import com.devhyeon.kakaoimagesearch.define.error.UNKNOWN_ERROR
+import com.devhyeon.kakaoimagesearch.constants.error.NETWORK_ERROR
+import com.devhyeon.kakaoimagesearch.constants.error.UNKNOWN_ERROR
 import com.devhyeon.kakaoimagesearch.utils.Status
 import com.devhyeon.kakaoimagesearch.utils.toGone
 import com.devhyeon.kakaoimagesearch.utils.toVisible
