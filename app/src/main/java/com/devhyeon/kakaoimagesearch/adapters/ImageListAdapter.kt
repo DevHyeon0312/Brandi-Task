@@ -2,7 +2,6 @@ package com.devhyeon.kakaoimagesearch.adapters
 
 import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -36,11 +35,13 @@ class ImageListAdapter(val fragment: Fragment) : RecyclerView.Adapter<RecyclerVi
 
     private fun getItem(position: Int): KakaoImageData = imageList[position]
 
+    /** 아이템 추가검색으로 인한 추가 */
     fun addItem(list: List<KakaoImageData>) {
         imageList.addAll(list)
         notifyItemRangeChanged(itemCount, list.size)
     }
 
+    /** 아이템 최초검색으로 인한 추가 */
     fun createItem(list: List<KakaoImageData>) {
         imageList.clear()
         imageList.addAll(list)
@@ -49,16 +50,19 @@ class ImageListAdapter(val fragment: Fragment) : RecyclerView.Adapter<RecyclerVi
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         (holder as TrackListViewHolder).onBind(getItem(position))
+        //스크롤 감지
         if(position == imageList.size-1) {
             if(_scrollState.value is Status.Run ) {
                 _scrollState.value = (Status.Success(true))
             }
         }
     }
-    
+
     private inner class TrackListViewHolder(private val viewDataBinding: ViewDataBinding) : RecyclerView.ViewHolder(viewDataBinding.root) {
         fun onBind(imgData: KakaoImageData) {
+            //dataBinding
             (viewDataBinding as ItemImageBinding).imgData = imgData
+
             //뷰 사이즈 재조정
             val viewSize = viewDataBinding.ivThumbnail.deviceWidth / 3
             viewDataBinding.ivThumbnail.setSize(viewSize)
@@ -71,6 +75,7 @@ class ImageListAdapter(val fragment: Fragment) : RecyclerView.Adapter<RecyclerVi
         }
     }
 
+    /** 이미지 전체화면으로 보기 */
     fun startDetail(imgData: KakaoImageData) {
         fragment.context!!.let{
             val intent = Intent (it, ImageDetailActivity::class.java)
