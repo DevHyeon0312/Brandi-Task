@@ -77,7 +77,7 @@ class ImageListFragment : BaseFragment() {
         binding.btnRefresh.setOnClickListener {
             kakaoApiViewModel.loadSearchImageData(lifecycleScope, query,sort,page,size, API_KEY)
         }
-
+        //추가검색에서 에러발생시 새로고침 ClickListener
         binding.btnLoaderRefresh.setOnClickListener {
             kakaoApiViewModel.loadSearchImageData(lifecycleScope, query,sort,page,size, API_KEY)
         }
