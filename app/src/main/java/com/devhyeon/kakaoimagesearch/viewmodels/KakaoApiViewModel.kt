@@ -7,6 +7,10 @@ import com.devhyeon.kakaoimagesearch.network.kakao.reponse.KakaoImageResponse
 import com.devhyeon.kakaoimagesearch.utils.Status
 import kotlinx.coroutines.launch
 
+/**
+ * KaKaoApi 를 호출하기 위한 곳에서 사용되는 ViewModel
+ * - api request & response
+ * */
 class KakaoApiViewModel constructor(private val kakaoAPI: KakaoAPI) : ViewModel() {
     //API 요청에 따른 상태 및 결과
     private val _ImageResponse = MutableLiveData<Status<KakaoImageResponse>>()

@@ -12,6 +12,11 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.jetbrains.annotations.NotNull
 
+/**
+ * IntroActivity 에서 사용되는 ViewModel
+ * - delayTime 만큼 대기
+ * - 네트워크 연결상태 검사
+ * */
 class IntroViewModel : ViewModel() {
     private val _networkState = MutableLiveData<Status<String>>()
     val networkState: LiveData<Status<String>> get() = _networkState

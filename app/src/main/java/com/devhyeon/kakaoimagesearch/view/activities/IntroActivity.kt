@@ -12,6 +12,12 @@ import com.devhyeon.kakaoimagesearch.view.dialogs.ErrorDialog
 import com.devhyeon.kakaoimagesearch.viewmodels.IntroViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
+/**
+ * Intro 화면
+ * - 네트워크 연결상태 검사 실행
+ * - 네트워크 미연결에 따른 Dialog
+ * - 네트워크 연결에 따른 Next 진행
+ * */
 class IntroActivity : BaseActivity() {
     companion object {
         private val TAG = IntroActivity::class.java.name

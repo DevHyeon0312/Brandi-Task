@@ -7,6 +7,11 @@ import com.devhyeon.kakaoimagesearch.view.base.BaseActivity
 import com.devhyeon.kakaoimagesearch.view.fragments.ImageListFragment
 import com.devhyeon.kakaoimagesearch.view.fragments.ImageSearchFragment
 
+/**
+ * Main 화면
+ * - 검색하기 위한 Fragment
+ * - 검색결과를 보여주기 위한 Fragment
+ * */
 class MainActivity : BaseActivity() {
     companion object {
         private val TAG = MainActivity::class.java.name
