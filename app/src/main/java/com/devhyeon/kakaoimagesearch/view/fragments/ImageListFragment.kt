@@ -142,7 +142,6 @@ class ImageListFragment : BaseFragment() {
                 is Status.Success -> {
                     if(it.data!! && page < 50) {
                         page += 1
-                        query = it.data.toString()
                         kakaoApiViewModel.loadSearchImageData(lifecycleScope, query, sort, page, size, API_KEY)
                     }
                 }
